@@ -17,7 +17,10 @@ This is a simple checkout system which handles various products and their respec
 
 
 ## Testing
+Tests can be run manually via:
+```npm test```
 
+Tests will also run automatically on commit via Husky.
 
 ## Contributions
 
