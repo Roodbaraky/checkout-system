@@ -8,6 +8,6 @@ export interface ItemData {
     unitPrice: number;
     specialPrice?: SpecialPrice;
 }
-const items: Record<string, ItemData> = pricingData
+const itemsData: Record<string, ItemData> = pricingData
 
-export default items;
+export default itemsData;

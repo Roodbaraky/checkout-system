@@ -4,17 +4,22 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/supertest": "^6.0.2",
     "express": "^4.19.2",
     "globals": "^15.8.0",
     "husky": "^9.0.11",
     "supertest": "^7.0.0",
+    "typescript": "^5.5.3",
     "vitest": "^1.6.0"
   }
 }
