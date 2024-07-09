@@ -12,8 +12,7 @@
     "precommit": "husky",
     "dev": "tsx app.ts",
     "build": "tsc --build",
-    "clean": "tsc --build --clean",
-    "start": "node --experimental-specifier-resolution=node dist/app.js"
+    "clean": "tsc --build --clean"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +22,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/supertest": "^6.0.2",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "globals": "^15.8.0",
     "husky": "^9.0.11",

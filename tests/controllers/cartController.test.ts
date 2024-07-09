@@ -70,7 +70,7 @@ describe('getCartTotal()', () => {
 
     });
 
-    it('should return 404 status when queried with valid cart data which is not present in the pricing table', async () => {
+    it('should return 404 status when queried with valid item codes which are not present in the pricing table', async () => {
         const response = await request(app)
             .post('/cart/total')
             .send( [

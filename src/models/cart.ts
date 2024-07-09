@@ -23,7 +23,6 @@ export const calculateCartTotal = (cart: CartData[]): number => {
     cart.forEach((item) => {
         const specialPrice = itemsData[item.code]?.specialPrice;
         const unitPrice = itemsData[item.code]?.unitPrice;
-
         if (specialPrice && item.quantity / specialPrice.quantity >= 1) {
             const multiple = Math.floor(item.quantity / specialPrice.quantity);
             const remainder = item.quantity % specialPrice.quantity;
