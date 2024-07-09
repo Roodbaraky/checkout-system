@@ -9,7 +9,7 @@ app.use(express.json())
 
 app.post('/cart/total', getCartTotal)
 
-describe('cartController', () => {
+describe('getCartTotal()', () => {
     it('should return the calculated total when queried with a valid cart payload', async () => {
         const response = await request(app)
             .post('/cart/total')
@@ -67,6 +67,22 @@ describe('cartController', () => {
             )
         expect(response.status).toBe(400)
         expect(response.body.error).toBe('Invalid cart data')
+
+    });
+
+    it('should return 404 status when queried with valid cart data which is not present in the pricing table', async () => {
+        const response = await request(app)
+            .post('/cart/total')
+            .send( [
+                    {
+                        code: 'Z',
+                        quantity: 1,
+                      
+                    }
+                ]
+            )
+        expect(response.status).toBe(404)
+        expect(response.body.error).toBe('Item/s not found')
 
     });
 });
