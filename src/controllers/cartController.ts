@@ -3,7 +3,7 @@ import { calculateCartTotal } from '../utils/checkout';
 import { CartData, validateCart } from '../models/cart';
 
 export const getCartTotal = (req: Request, res: Response): void => {
-    const cart: CartData[] = req.body.cart;
+    const cart: CartData[] = req.body;
     try {
         if (validateCart(cart)) {
             const total = calculateCartTotal(cart);
