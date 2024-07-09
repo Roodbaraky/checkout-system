@@ -20,6 +20,17 @@ describe('validateCart', () => {
         }
     });
 
+    it('should throw an error if passed a cart containing item/s with codes not in pricingData', () => {
+        const cart = [{ code: 'Z', quantity: 2 }] as any
+        try {
+            validateCart(cart)
+        } catch (error) {
+            expect(error).toBeDefined()
+            const err = error as Error
+            expect(err.message).toBe('Item/s not found')
+        }
+    });
+
     it('should throw an error if passed a cart containing item/s with invalid quantity/s', () => {
         const cart = [{ code: 'A', quantity: '2' }] as any
         try {

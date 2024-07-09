@@ -30,6 +30,9 @@ Install dependencies via:
 ## Testing
 Tests can be run manually via:
 ```npm test```
+OR
+```npm run watch```
+To use the '--watch' flag with Vitest.
 
 Tests will also run automatically on commit via Husky.
 
@@ -38,7 +41,6 @@ Create a .env file in the project directory with the desired port to run the ser
 ```
 //.env
 PORT=3001
-
 ```
 It will default to 3001 if absent.
 

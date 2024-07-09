@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { calculateCartTotal } from '../models/cart.js';
+import { calculateCartTotal, returnCartTotal } from '../models/cart.js';
 import { CartData, validateCart } from '../models/cart.js';
 
 export const getCartTotal = (req: Request, res: Response): void => {
     const cart: CartData[] = req.body;
     try {
         if (validateCart(cart)) {
-            const total = calculateCartTotal(cart);
+            const total = returnCartTotal(cart);
             res.status(200).send({ total });
         }
     } catch (error) {
