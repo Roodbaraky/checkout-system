@@ -1,4 +1,4 @@
-import pricingData from '../data/pricingData.json'
+import pricingData from '../data/pricingData.json' with {type:"json"}
 interface SpecialPrice {
     quantity: number;
     price: number;

@@ -1,5 +1,5 @@
-import { CartData } from "../models/cart";
-import itemsData from "../models/item";
+import { CartData } from "../models/cart.js";
+import itemsData from "../models/item.js";
 
 
 export const calculateCartTotal = (cart: CartData[]): number => {

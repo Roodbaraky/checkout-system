@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { calculateCartTotal } from '../utils/checkout';
-import { CartData, validateCart } from '../models/cart';
+import { calculateCartTotal } from '../utils/checkout.js';
+import { CartData, validateCart } from '../models/cart.js';
 
 export const getCartTotal = (req: Request, res: Response): void => {
     const cart: CartData[] = req.body;

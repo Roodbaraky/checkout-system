@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { getCartTotal } from './src/controllers/cartController';
+import { getCartTotal } from './src/controllers/cartController.js';
 
 const app: Application = express();
 app.use(express.json());
