@@ -21,7 +21,7 @@ Install dependencies via:
 
 ## Usage
 Build for production:
-```npm run build``
+```npm run build```
 OR
 ```npm run clean```
 
