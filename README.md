@@ -11,6 +11,7 @@
   - [Usage](#usage)
     - [Development](#development)
     - [Production](#production)
+    - [Try it out](#try-it-out)
   - [Functionality](#functionality)
 
 
@@ -61,6 +62,11 @@ To use the "--clean" flag with tsc.
 This will transpile TypeScript code to JavaScript and export to the dist folder.
 From here, run dist/app.js with a process manager of your choice e.g.:
 ```pm2 start dist/app.js```
+
+### Try it out
+Alternatively, try out the deployed app here:
+```https://checkout-system.onrender.com/cart/total```
+and query via an API client of your choice e.g. Insomnia
 
 ## Functionality
 The solution uses an endpoint at ```/cart/total``` which takes a cart/basket request body via POST, iterates through the cart items and mutlipies special and unit prices by quantity appropriately and returns a cumulative total.
