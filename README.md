@@ -11,7 +11,7 @@
   - [Usage](#usage)
     - [Development](#development)
     - [Production](#production)
-    - [Functionality](#functionality)
+  - [Functionality](#functionality)
 
 
 ## Overview
@@ -62,7 +62,7 @@ This will transpile TypeScript code to JavaScript and export to the dist folder.
 From here, run dist/app.js with a process manager of your choice e.g.:
 ```pm2 start dist/app.js```
 
-### Functionality
+## Functionality
 The solution uses an endpoint at ```/cart/total``` which takes a cart/basket request body via POST, iterates through the cart items and mutlipies special and unit prices by quantity appropriately and returns a cumulative total.
 
 Example cart: 
