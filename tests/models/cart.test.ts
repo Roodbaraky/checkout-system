@@ -82,6 +82,12 @@ describe('validateCart', () => {
             expect(err.message).toBe('Invalid cart data')
         }
 
+    });
+    it('should not mutate the cart array', () => {
+        const cart = [{ code: 'A', quantity: 1 }]
+        const cartCopy = [{ code: 'A', quantity: 1 }]
+        validateCart(cart)
+        expect(cart).toEqual(cartCopy)
     })
 });
 
@@ -103,10 +109,25 @@ describe('calculateCartTotal()', () => {
         const cart2 = [{ code: 'A', quantity: 1 }, { code: 'B', quantity: 3 }]
         const cart3 = [{ code: 'A', quantity: 1 }, { code: 'B', quantity: 6 }]
 
+
         expect(calculateCartTotal(cart)).toBe(110)
         expect(calculateCartTotal(cart2)).toBe(145)
         expect(calculateCartTotal(cart3)).toBe(230)
         expect(calculateCartTotal(exampleCartData)).toBe(284)
 
+
     });
+    it('should not mutate the cart array', () => {
+        const cart = [{ code: 'A', quantity: 1 }]
+        const cartCopy = [{ code: 'A', quantity: 1 }]
+        calculateCartTotal(cart)
+        expect(cart).toEqual(cartCopy)
+    });
+    it('should ignore zero valued quanities', () => {
+        const cart = [{ code: 'A', quantity: 0 }]
+        const cart2 = [{code:'A', quantity:0}, {code:'B', quantity:1}]
+        expect(calculateCartTotal(cart)).toBe(0)
+        expect(calculateCartTotal(cart2)).toBe(35)
+
+    })
 })
