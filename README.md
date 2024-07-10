@@ -11,12 +11,13 @@
   - [Usage](#usage)
     - [Development](#development)
     - [Production](#production)
+    - [Functionality](#functionality)
   - [Contributions](#contributions)
   - [License](#license)
 
 
 ## Overview
-This is a simple checkout system which handles various products and their respective prices, including special offers in accordance with the brief outlined [here](https://spareroom.github.io/recruitment/docs/cart-kata/):
+This is a simple checkout system endpoint which handles various products and their respective prices, including special offers in accordance with the brief outlined [here](https://spareroom.github.io/recruitment/docs/cart-kata/):
 ```https://spareroom.github.io/recruitment/docs/cart-kata/``` 
 
 
@@ -59,6 +60,17 @@ To use the "--clean" flag with tsc.
 This will transpile TypeScript code to JavaScript and export to the dist folder.
 From here, run dist/app.js with a process manager of your choice e.g.:
 ```pm2 start dist/app.js```
+
+### Functionality
+The solution uses an endpoint at '/cart/total' which takes a cart/basket request body via POST, iterates through the cart items and mutlipies special and unit prices by quantity appropriately and returns a cumulative total.
+
+It is loosely organised in the MVC architecture pattern, with the itemsData being imported from a JSON file, mimicking a database, where items could be added / removed, prices changed and special price offers removed / altered to suit business needs.
+
+The controller function ```getCartTotal``` takes the request and first validates the cart to ensure it contains data in the correct format via the ```validateCart``` function, so that the 'database' is not unnecessarily queried with invalid cart properties, extra properties, incorrect datatypes etc. If the cart fails, this function will throw an error and return an appropriate error message.
+
+If the cart is valid it is passed to the ```calculateCartTotal``` function which iterates through the cart, returning the cumulative total. If at any point an item code which is not present in the 'database' is passed, it throws an appropriate error which is returned.
+
+
 
 ## Contributions
 

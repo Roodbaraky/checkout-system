@@ -109,31 +109,4 @@ describe('calculateCartTotal()', () => {
         expect(calculateCartTotal(exampleCartData)).toBe(284)
 
     });
-    it('should throw an error if passed a cart containing invalid items (invalid \'code\' datatype)', () => {
-        const cart = [{ code: 4, quantity: 2 }] as any
-        try {
-            calculateCartTotal(cart)
-        }
-        catch (error) {
-            expect(error).toBeDefined()
-            const err = error as Error
-            expect(err.message).toBe('Invalid cart data')
-        }
-
-    });
-
-    it('should throw an error if passed a cart containing invalid items (invalid \'quantity\' datatype)', () => {
-        const cart = [{ code: 'A', quantity: '2' }] as any
-        try {
-            calculateCartTotal(cart)
-        }
-        catch (error) {
-            expect(error).toBeDefined()
-            const err = error as Error
-            expect(err.message).toBe('Invalid cart data')
-
-        }
-
-    })
-
 })

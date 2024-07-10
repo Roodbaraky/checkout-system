@@ -29,21 +29,10 @@ export const calculateCartTotal = (cart: CartData[]): number => {
             total += itemsData[item.code]?.unitPrice * remainder;
         } else if (unitPrice) {
             total += itemsData[item.code]?.unitPrice * item.quantity;
-        } else if (typeof item.code !== 'string') {
-            throw Error('Invalid cart data')
+     
         } else {
             throw Error('Item/s not found')
         }
     });
     return total;
 };
-
-
-export const returnCartTotal = (cart: CartData[]) => {
-    const isCartValid = validateCart(cart)
-    return isCartValid
-        ? calculateCartTotal(cart)
-        : isCartValid
-
-
-}
