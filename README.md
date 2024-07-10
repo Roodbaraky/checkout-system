@@ -94,6 +94,20 @@ Example cart:
   }
   ```
 
+  Errors:
+  ```
+{
+	"error": "Invalid cart data"
+}
+  ```
+```
+{
+	"error": "Item/s not found"
+}
+```
+
+
+
 It is loosely organised in the MVC architecture pattern, with the itemsData being imported from a JSON file, mimicking a database, where items could be added / removed, prices changed and special price offers removed / altered to suit business needs.
 
 The controller function ```getCartTotal``` takes the request and first validates the cart to ensure it contains data in the correct format via the ```validateCart``` function, so that the 'database' is not unnecessarily queried with invalid cart properties, extra properties, incorrect datatypes etc. If the cart fails, this function will throw an error and return an appropriate error message.
