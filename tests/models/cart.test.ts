@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { validateCart, calculateCartTotal } from '../../src/models/cart'
+import { validateCart, calculateCartTotal, getPricesByItemCode } from '../../src/models/cart'
 import exampleCartData from '../../src/data/testCartData.json'
 
 describe('validateCart', () => {
@@ -142,5 +142,40 @@ describe('calculateCartTotal()', () => {
         expect(calculateCartTotal(cart)).toBe(0)
         expect(calculateCartTotal(cart2)).toBe(35)
 
+    })
+})
+
+describe('getPricesByItemCode', () => {
+    it('should return the unit price and special price for an itemCode which has a special price', async () => {
+        try {
+            const data = await getPricesByItemCode('A')
+            const { unit_price, Offers } = data;
+            expect(unit_price).toBe(50)
+            expect(Offers?.price).toBe(140)
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+
+    });
+
+    it('should return the unit price and an undefined specialPrice for an itemCode which has no special price', async () => {
+        try {
+            const data = await getPricesByItemCode('C')
+            const { unit_price, Offers } = data;
+            expect(unit_price).toBe(25)
+            expect(Offers?.price).toBe(undefined)
+        } catch (err) {
+            console.log(err)
+            throw err
+        }
+    })
+
+    it('should throw an error if queried with a non-existent itemCode', async () => {
+        try {
+            const data = await getPricesByItemCode('E')
+        } catch (err) {
+            expect(err.message).toBe('Invalid cart data')
+        }
     })
 })

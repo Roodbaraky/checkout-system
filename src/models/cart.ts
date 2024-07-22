@@ -1,8 +1,28 @@
+import { supabase } from "../database/seed.js";
 import itemsData from "../models/item.js";
 
 export interface CartData {
     code: string;
     quantity: number;
+}
+
+export const getPricesByItemCode = async (itemCode: string) => {
+    const { data, error } = await supabase
+        .from('Items')
+        .select(`
+            unit_price, 
+            Offers (price)`)
+        .eq('item_code', itemCode)
+    if (error) {
+        console.error('Error fetching prices', error)
+        throw error
+    } else {
+        if (data[0]) {
+            return data[0]
+        } else {
+            throw new Error('Invalid cart data')
+        }
+    }
 }
 
 export const validateCart = (cart: CartData[]) => {
@@ -19,23 +39,21 @@ export const calculateCartTotal = (cart: CartData[]): number => {
     if (!cart.length) {
         return total
     }
-    //Iterate through cart array
-    //Count instances of each item code
-    //Sum quantities if item code === item code
+
     interface keyObject {
         [key: string]: number
-        
+
     }
     const keyObject: keyObject = {}
     cart.forEach((item) => {
         if (keyObject.hasOwnProperty(item.code)) {
             keyObject[item.code] += item.quantity
         }
-        else{
-            keyObject[item.code]=item.quantity
+        else {
+            keyObject[item.code] = item.quantity
         }
     })
-    
+
 
     Object.entries(keyObject).forEach((item) => {
         const specialPrice = itemsData[item[0]]?.specialPrice;
