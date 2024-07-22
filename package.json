@@ -12,7 +12,8 @@
     "precommit": "husky",
     "dev": "tsx app.ts",
     "build": "tsc --build",
-    "clean": "tsc --build --clean"
+    "clean": "tsc --build --clean",
+    "seed": "tsx src/database/run-seed.ts"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +37,8 @@
     }
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "@supabase/supabase-js": "^2.44.4",
+    "dotenv": "^16.4.5",
+    "supabase": "^1.183.5"
   }
 }
