@@ -105,42 +105,42 @@ describe('validateCart', () => {
 });
 
 describe('calculateCartTotal()', () => {
-    it('should return the unit price of the item when passed a cart containing one item', () => {
+    it('should return the unit price of the item when passed a cart containing one item', async () => {
         const cart = [{ code: 'A', quantity: 1 }]
-        expect(calculateCartTotal(cart)).toBe(50)
+        expect(await calculateCartTotal(cart)).toBe(50)
     });
-    it('should return the product of unitPrice and quantity of an item when passed a cart containing multiple of one item', () => {
+    it('should return the product of unitPrice and quantity of an item when passed a cart containing multiple of one item', async () => {
         const cart = [{ code: 'A', quantity: 2 }]
-        expect(calculateCartTotal(cart)).toBe(100)
+        expect(await calculateCartTotal(cart)).toBe(100)
     });
-    it('should return the total price of items when passed a cart containing multiple items', () => {
+    it('should return the total price of items when passed a cart containing multiple items', async () => {
         const cart = [{ code: 'A', quantity: 1 }, { code: 'B', quantity: 1 }]
-        expect(calculateCartTotal(cart)).toBe(85)
+        expect(await calculateCartTotal(cart)).toBe(85)
     });
-    it('should incorporate special prices of items when returning the cart total', () => {
+    it('should incorporate special prices of items when returning the cart total', async () => {
         const cart = [{ code: 'A', quantity: 1 }, { code: 'A', quantity: 2 }]
         const cart2 = [{ code: 'A', quantity: 1 }, { code: 'B', quantity: 3 }]
         const cart3 = [{ code: 'A', quantity: 1 }, { code: 'B', quantity: 6 }]
 
 
-        expect(calculateCartTotal(cart)).toBe(140)
-        expect(calculateCartTotal(cart2)).toBe(145)
-        expect(calculateCartTotal(cart3)).toBe(230)
-        expect(calculateCartTotal(exampleCartData)).toBe(284)
+        expect(await calculateCartTotal(cart)).toBe(140)
+        expect(await calculateCartTotal(cart2)).toBe(145)
+        expect(await calculateCartTotal(cart3)).toBe(230)
+        expect(await calculateCartTotal(exampleCartData)).toBe(284)
 
 
     });
-    it('should not mutate the cart array', () => {
+    it('should not mutate the cart array', async () => {
         const cart = [{ code: 'A', quantity: 1 }]
         const cartCopy = [{ code: 'A', quantity: 1 }]
-        calculateCartTotal(cart)
+        await calculateCartTotal(cart)
         expect(cart).toEqual(cartCopy)
     });
-    it('should ignore zero valued quanities', () => {
+    it('should ignore zero valued quanities', async () => {
         const cart = [{ code: 'A', quantity: 0 }]
         const cart2 = [{ code: 'A', quantity: 0 }, { code: 'B', quantity: 1 }]
-        expect(calculateCartTotal(cart)).toBe(0)
-        expect(calculateCartTotal(cart2)).toBe(35)
+        expect(await calculateCartTotal(cart)).toBe(0)
+        expect(await calculateCartTotal(cart2)).toBe(35)
 
     })
 })
@@ -175,7 +175,7 @@ describe('getPricesByItemCode', () => {
         try {
             const data = await getPricesByItemCode('E')
         } catch (err) {
-            expect(err.message).toBe('Invalid cart data')
+            expect(err.message).toBe('Item/s not found')
         }
     })
 })

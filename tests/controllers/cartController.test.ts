@@ -12,7 +12,7 @@ app.post('/cart/total', getCartTotal)
 describe('cartController', () => {
     it('should invoke validateCart and calculateCartTotal', async () => {
         const validateCartSpy = vi.spyOn(cartModel, 'validateCart').mockImplementation(() => true);
-        const calculateCartTotalSpy = vi.spyOn(cartModel, 'calculateCartTotal').mockImplementation(() => 284);
+        const calculateCartTotalSpy = vi.spyOn(cartModel, 'calculateCartTotal').mockImplementation(async () => 284);
         const response = await request(app)
             .post('/cart/total')
             .send(exampleCartData)
