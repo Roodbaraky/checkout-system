@@ -44,7 +44,7 @@ export const calculateCartTotal = async (cart: CartData[]): Promise<number> => {
         return total;
     }
 
-    const keyObject: { [key: string]: number } = {};
+    const keyObject: Record<string, number> = {};
     cart.forEach((item) => {
         if (keyObject.hasOwnProperty(item.code)) {
             keyObject[item.code] += item.quantity;
